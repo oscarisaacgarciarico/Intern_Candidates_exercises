@@ -50,15 +50,15 @@ exports/            # se llena al visitar una ficha
    También resuelve evoluciones y double damage por tipo.
    Al renderizar, se guarda una versión exportable en exports/.
 
-Personalización rápida
+# Personalización rápida
 
-Pokémon del selector: edita BASIC_POKEMON en app.py.
-
-Colores por tipo / tema: TYPE_COLORS y THEMES en app.py.
-
-Tamaños del selector: al final de style.css (clases .poke-grid, .poke-thumb-wrap, .poke-thumb).
-
-Botón “Back”: fijo arriba-izquierda, editable en .back (en style.css).
+      -Pokémon del selector: edita BASIC_POKEMON en app.py.
+      
+      -Colores por tipo / tema: TYPE_COLORS y THEMES en app.py.
+      
+      -Tamaños del selector: al final de style.css (clases .poke-grid, .poke-thumb-wrap, .poke-thumb).
+      
+      -Botón “Back”: fijo arriba-izquierda, editable en .back (en style.css).
 
 Notas
 ```bash
