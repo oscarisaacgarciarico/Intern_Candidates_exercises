@@ -12,7 +12,6 @@ Aplicación sencilla en Flask que consume la PokéAPI para:
    -requests
 ## Ejecución
 
-```bash
 # (opcional) entorno virtual en Windows PowerShell
 python -m venv venv
 Set-ExecutionPolicy -Scope Process Bypass
