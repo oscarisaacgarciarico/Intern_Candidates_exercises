@@ -59,7 +59,7 @@ Tamaños del selector: al final de style.css (clases .poke-grid, .poke-thumb-wra
 Botón “Back”: fijo arriba-izquierda, editable en .back (en style.css).
 
 Notas
-
+```bash
 Para evitar falsos errores en VS Code con Jinja/CSS inline:
 
 {
@@ -69,3 +69,4 @@ Para evitar falsos errores en VS Code con Jinja/CSS inline:
   },
   "css.validate": false
 }
+```
