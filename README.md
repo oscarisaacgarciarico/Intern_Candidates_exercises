@@ -33,20 +33,21 @@ static/
   └─ js/main.js
 exports/            # se llena al visitar una ficha
 ```
-Cómo funciona
+# Cómo funciona
 
-Selector (/)
-index.html recibe pokemon_list (p. ej. ["pichu","charmander","squirtle","bulbasaur"]).
-Un pequeño script en la página llama a la PokéAPI para:
+-Selector (/)
 
-tomar el sprite (GIF Gen V si existe; si no, front_default; si no, official-artwork);
+   index.html recibe pokemon_list (p. ej. ["pichu","charmander","squirtle","bulbasaur"]).
+   Un pequeño script en la página llama a la PokéAPI para:
 
-colorear la “pill” del nombre según el tipo principal.
+      -tomar el sprite (GIF Gen V si existe; si no, front_default; si no, official-artwork);
+      
+      -colorear la “pill” del nombre según el tipo principal.
 
-Ficha (/pokemon/<name>)
-app.py consulta PokéAPI para stats, tipos y habilidades (y lee el texto de cada habilidad).
-También resuelve evoluciones y double damage por tipo.
-Al renderizar, se guarda una versión exportable en exports/.
+-Ficha (/pokemon/<name>)
+   app.py consulta PokéAPI para stats, tipos y habilidades (y lee el texto de cada habilidad).
+   También resuelve evoluciones y double damage por tipo.
+   Al renderizar, se guarda una versión exportable en exports/.
 
 Personalización rápida
 
