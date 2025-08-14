@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ p.name|default('Pokémon')|capitalize }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://unpkg.com/modern-normalize@2.0.0/modern-normalize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  {% if export %}
+    <style>{{ inline_css|default('', true)|safe }}</style>
+  {% else %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% endif %}
+
+  <style>
+    :root{
+      --bg: {{ theme.bg|default('#0b0b12') }};
+      --fg: {{ theme.text|default('#eaeaea') }};
+      --accent: {{ theme.accent|default('#6ce5b1') }};
+      --chip: {{ theme.chip|default('#1d2230') }};
+      --white: #fff;
+    }
+  </style>
+</head>
+<body>
+  {% set sprite = p.sprite or p.sprite_static %}
+  {% set artwork = p.artwork or '' %}
+  {% set initial_src = sprite or artwork or '' %}
+
+  <div class="wrap">
+    <div class="topbar">
+      {% if export %}
+        <span class="back" style="pointer-events:none;opacity:.7">← Back</span>
+      {% else %}
+        <a class="back" href="{{ url_for('index') }}">← Back</a>
+      {% endif %}
+    </div>
+
+    <h1 class="title">{{ p.name|default('Pokémon')|capitalize }}</h1>
+
+    <div class="panel">
+      <div class="toggle">
+        <button id="btnSprite"  class="btn">Sprite</button>
+        <button id="btnArtwork" class="btn">Artwork</button>
+      </div>
+
+      <div class="sprite">
+        <img id="pokeImg"
+             src="{{ initial_src|default('', true) }}"
+             alt="{{ p.name|default('Pokémon')|capitalize }}"
+             data-sprite="{{ sprite|default('', true) }}"
+             data-artwork="{{ artwork|default('', true) }}">
+      </div>
+
+      <div class="label">Double damage from</div>
+      <div>
+        {% if pills_from %}
+          {% for pill in pills_from %}
+            <span class="pill"
+                  style="background: {{ pill.bg|default('#333') }}; color: {{ pill.fg|default('#fff') }};">
+              {{ pill.name|default(pill) }}
+            </span>
+          {% endfor %}
+        {% else %}
+          <span class="muted">None</span>
+        {% endif %}
+      </div>
+
+      <div class="label" style="margin-top:16px;">Double damage to</div>
+      <div>
+        {% if pills_to %}
+          {% for pill in pills_to %}
+            <span class="pill"
+                  style="background: {{ pill.bg|default('#333') }}; color: {{ pill.fg|default('#fff') }};">
+              {{ pill.name|default(pill) }}
+            </span>
+          {% endfor %}
+        {% else %}
+          <span class="muted">None</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <div class="section-title">Pokémon type</div>
+        <div class="pill" style="background: {{ type_badge.bg|default('#222') }}; color: {{ type_badge.fg|default('#fff') }}; margin-top:8px">
+          {% if p.types %}
+            {% for t in p.types %}
+              {{ t|capitalize }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            Unknown
+          {% endif %}
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Pokémon abilities</div>
+        <div class="ability-list">
+          {% if p.abilities %}
+            {% for a in p.abilities %}
+              <div class="ability">
+                <div class="badge">{{ a.name|default('Ability')|capitalize }}</div>
+                <p>{{ a.effect|default('—') }}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="muted">No abilities.</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Evolves to</div>
+        <div class="evolves">
+          {% if evols %}
+            {% for e in evols %}
+              <span class="evo-chip">
+                {% if e.sprite %}<img src="{{ e.sprite }}" alt="{{ e.name|default('') }}">{% endif %}
+                <span>{{ e.name|default('Unknown') }}</span>
+              </span>
+            {% endfor %}
+          {% else %}
+            <span class="muted">None</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Stats</div>
+        <div class="stat-grid">
+          <div class="stat"><span>HP</span><span>{{ p.hp|default('—') }}</span></div>
+          <div class="stat"><span>Attack</span><span>{{ p.attack|default('—') }}</span></div>
+          <div class="stat"><span>Defense</span><span>{{ p.defense|default('—') }}</span></div>
+          <div class="stat"><span>Base Experience</span><span>{{ p.base_experience|default('—') }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if export %}
+    <script>{{ inline_js|default('', true)|safe }}</script>
+  {% else %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% endif %}
+</body>
+</html>
