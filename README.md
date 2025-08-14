@@ -45,6 +45,7 @@ exports/            # se llena al visitar una ficha
       -colorear la “pill” del nombre según el tipo principal.
 
 -Ficha (/pokemon/<name>)
+
    app.py consulta PokéAPI para stats, tipos y habilidades (y lee el texto de cada habilidad).
    También resuelve evoluciones y double damage por tipo.
    Al renderizar, se guarda una versión exportable en exports/.
