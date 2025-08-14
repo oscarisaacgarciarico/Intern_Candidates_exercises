@@ -23,6 +23,7 @@ abrir http://127.0.0.1:5000
 Los mensajes “Debug mode / Running on …” son del servidor de desarrollo de Flask.
 
 # Estructura:
+```bash
 app.py
 templates/
   ├─ index.html     # selector con sprites y nombre por tipo
@@ -31,7 +32,7 @@ static/
   ├─ css/style.css
   └─ js/main.js
 exports/            # se llena al visitar una ficha
-
+```
 Cómo funciona
 
 Selector (/)
